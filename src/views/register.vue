@@ -3,17 +3,20 @@
     
     <v-container grid-list-xs>
       <v-layout align-center justify-center flex-column>
-        <div class="logo">
-              <h3>Logo</h3>
-              <h4>Student hostel App</h4>
-        </div>
+        <v-alert 
+              type="warning"
+              :value = "error">
+              {{error}}
+          </v-alert>
          <v-card
             color="transparent"
             flat
           >
+          
           <v-card-text>
             <v-form>
               <v-text-field
+                v-model="email"
                 background-color="white"
                 height=".5em"
                 dense
@@ -27,6 +30,7 @@
                 required
               ></v-text-field>
               <v-text-field
+                v-model="password"
                 background-color="white"
                 color="primary"
                 filled
@@ -48,8 +52,9 @@
               class="px-12"
               rounded
               x-large
-              @click.prevent="signin"
-            >Login</v-btn>
+              @click.prevent="register"
+              :disabled="processing"
+            >r e g i s t e r</v-btn>
           </v-card-actions>
            
          </v-card>
@@ -84,17 +89,10 @@ export default {
     }
   },
 
-  watch:{
-    isUserAuthenticated(val){
-      if(val === true){
-        this.$route.push('/')
-      }
-    }
-  },
 
   methods: {
-    signin(){
-      this.$store.dispatch('SIGNIN',{email:this.email, password:this.password})
+    register(){
+      this.$store.dispatch('REGISTER',{email:this.email, password:this.password})
     }
   }
 

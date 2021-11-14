@@ -2,9 +2,9 @@
   <v-app>
     <app-bar v-if="!Navigation"> </app-bar>
     <v-main>
-      <v-container>
-        <router-view/>
-      </v-container>
+
+      <router-view/>
+     
     </v-main>
   </v-app>
 </template>
@@ -12,6 +12,7 @@
 <script>
 
 import AppBar from './components/AppBar.vue';
+import firebase from 'firebase/compat/app'
 
 export default {
   name: 'App',
@@ -28,6 +29,10 @@ export default {
 
   created(){
     this.checkRoute()
+    let vm = this
+    firebase.auth().onAuthStateChanged((user) => {
+      vm.$store.dispatch('STATE_CHANGED', user)
+});
   },
 
   methods:{
