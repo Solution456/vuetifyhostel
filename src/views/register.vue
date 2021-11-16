@@ -14,7 +14,8 @@
           >
           
           <v-card-text>
-            <v-form>
+            <v-form
+              v-model='valid'>
               <v-text-field
                 v-model="email"
                 background-color="white"
@@ -72,6 +73,7 @@ export default {
     return{
       email:null,
       password:null,
+      valid: false,
 
     }
   },

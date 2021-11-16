@@ -12,7 +12,8 @@
             flat
           >
           <v-card-text>
-            <v-form>
+            <v-form
+              v-model="valid">
               <v-text-field
                 background-color="white"
                 height=".5em"
@@ -24,6 +25,7 @@
                 name="Email"
                 label="Email"
                 type="email"
+                :rules="EmailRules"
                 required
               ></v-text-field>
               <v-text-field
@@ -36,6 +38,7 @@
                 prepend-inner-icon="mdi-lock"
                 name="password"
                 label="password"
+                :rules="PassRules"
                 id="password"
                 type="password"
                 required
@@ -49,6 +52,7 @@
               rounded
               x-large
               @click.prevent="signin"
+              :disabled="processing || !valid"
             >Login</v-btn>
           </v-card-actions>
            
@@ -67,6 +71,17 @@ export default {
     return{
       email:null,
       password:null,
+      valid: false,
+
+      EmailRules:[
+        v => !!v || 'Введите e-mail',
+        v => /.+@.+\..+/.test(v) || 'Неправильный e-mail',
+      ],
+
+      PassRules:[
+         v => !!v || 'Введите пароль',
+         v => (v && v.length <= 6) || 'Пароль должен быть больше 6'
+      ]
 
     }
   },
@@ -87,7 +102,7 @@ export default {
   watch:{
     isUserAuthenticated(val){
       if(val === true){
-        this.$route.push('/')
+        this.$router.push('/')
       }
     }
   },
