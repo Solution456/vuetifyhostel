@@ -57,9 +57,10 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-spacer/>
-        <v-list-item
-          link>
+        <v-divider></v-divider>
+        <v-list-item v-if="isUserAuthenticated"
+          link
+          @click.prevent="signout">
           <v-list-item-icon>
             <v-icon >mdi-exit-to-app</v-icon>
           </v-list-item-icon>
@@ -86,6 +87,9 @@ export default {
         
     },
     computed: {
+        isUserAuthenticated(){
+          return this.$store.getters.isUserAuthenticated
+        },
         menuItems(){
             return [
                {
@@ -122,6 +126,12 @@ export default {
             ]
         },
     },
+
+    methods:{
+      signout(){
+        this.$store.dispatch('SIGN_OUT')
+      }
+    }
 }
 </script>
 

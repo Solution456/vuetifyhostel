@@ -7,6 +7,12 @@
               <h3>Logo</h3>
               <h4>Student hostel App</h4>
         </div>
+
+         <v-alert 
+              type="warning"
+              :value = "error">
+              {{error}}
+         </v-alert>
          <v-card
             color="transparent"
             flat
@@ -15,6 +21,7 @@
             <v-form
               v-model="valid">
               <v-text-field
+                v-model="email"
                 background-color="white"
                 height=".5em"
                 dense
@@ -29,6 +36,7 @@
                 required
               ></v-text-field>
               <v-text-field
+                v-model="password"
                 background-color="white"
                 color="primary"
                 filled
@@ -80,7 +88,7 @@ export default {
 
       PassRules:[
          v => !!v || 'Введите пароль',
-         v => (v && v.length <= 6) || 'Пароль должен быть больше 6'
+         v => (v && v.length >= 6) || 'Пароль должен быть больше 6'
       ]
 
     }

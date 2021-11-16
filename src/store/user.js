@@ -62,6 +62,10 @@ export default{
 
         },
 
+        SIGN_OUT(){
+            firebase.auth().signOut()
+        },
+
         STATE_CHANGED({commit},payload){
             if(payload){
                 commit('SET_USER', payload.uid)
