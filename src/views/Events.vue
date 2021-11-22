@@ -1,12 +1,62 @@
 <template>
-  <div>
-    <h1>Events</h1>
-  </div>
+  <v-container grid-list-xs>
+    <h2 class="ma-4">Ближайшие мероприятия</h2>
+     <v-layout row wrap>
+       <div class="col" v-for="event in CloseEvents" :key="event.id">
+         <event-card :event="event"></event-card>
+       </div>
+     </v-layout>
+
+      <h2 class="ma-4">Другие мероприятия</h2>
+      <v-layout row wrap>
+       <div class="col" v-for="event in OtherEvents" :key="event.id">
+         <event-card :event="event"></event-card>
+       </div>
+     </v-layout>
+
+  </v-container>
+  
 </template>
 
 <script>
-export default {
+import EventCard from '../components/Events/EventCard.vue'
 
+export default {
+  components: {
+    EventCard,
+  },
+
+  computed: {
+    events(){
+      return this.$store.getters.getEvents
+    },
+
+    CloseEvents(){
+      let events = this.events
+
+      let SortEvents = []
+      if(events){
+          SortEvents =  events.sort((a, b) => new Date(b.date) - new Date(a.date))
+      }
+
+     let TwoFilterEvents = SortEvents.slice(0,2);
+     
+     
+
+      return TwoFilterEvents
+    },
+
+    OtherEvents(){
+      let events = this.events
+      let SortEvents = []
+      if(events){
+        SortEvents =  events.sort((a, b) => new Date(b.date) - new Date(a.date))
+      }
+      let arr = SortEvents.slice(0,2)
+      let OtherEvents = SortEvents.filter(f => arr.indexOf(f) < 0)
+      return OtherEvents
+    }
+  }
 }
 </script>
 
