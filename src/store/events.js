@@ -37,6 +37,24 @@ export default{
                     location: 'khlhlk',
                     description: 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
                 },
+
+                {
+                    id:'ggewgewgee6',
+                    title:'Test5 events',
+                    imgUrl:'https://images.unsplash.com/photo-1636935941606-b883678abb6a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
+                    date: 1637584254799,
+                    location: 'khlhlk',
+                    description: 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
+                },
+
+                {
+                    id:'ggewgewgee7',
+                    title:'Test6 events',
+                    imgUrl:'https://images.unsplash.com/photo-1636982915678-bbc71eb35a46?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=521&q=80',
+                    date: 1637584330978,
+                    location: 'khlhlk',
+                    description: 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
+                },
             ] 
               
     },
