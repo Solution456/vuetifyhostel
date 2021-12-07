@@ -1,13 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import Home from '../views/Home.vue'
-<<<<<<< Updated upstream
 import store from '../store'
-=======
 import Profile from '../views/Profile.vue'
->>>>>>> Stashed changes
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -58,6 +53,11 @@ const routes = [
     // this generates a separate chunk (Profile.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     //component: () => import(/* webpackChunkName: "Profile" */ '../views/profile.vue')
+  },
+  {
+    path: '/adminStage',
+    name: 'AdminStage',
+    // component: () => import(/* webpackChunkName: "Register" */ '../views/AdminStage.vue')
   }
 ]
 
@@ -69,6 +69,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.name !== 'SignIn' && !store.getters.isUserAuthenticated) next({ name: 'SignIn' })
+  if (to.name !== 'AdminStage' && !store.getters.isUserAuthenticated) next({ name: 'AdminStage' })
   else next()
 })
 
