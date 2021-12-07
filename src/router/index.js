@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import Home from '../views/Home.vue'
-<<<<<<< Updated upstream
 import store from '../store'
-=======
 import Profile from '../views/Profile.vue'
->>>>>>> Stashed changes
+
 
 Vue.use(VueRouter)
 
