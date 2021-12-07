@@ -9,7 +9,7 @@
 
       <h2 class="ma-4">Другие мероприятия</h2>
       <v-layout row wrap>
-       <div class="col" v-for="event in OtherEvents" :key="event.id">
+       <div class="col col-4" v-for="event in OtherEvents" :key="event.id">
          <event-card :event="event"></event-card>
        </div>
      </v-layout>

@@ -28,7 +28,12 @@
 <script>
 export default {
     name: 'FloorCard',
-    props:[]
+    props:{
+      'user':{
+        Type: Object,
+        require:true
+      }
+    },
 
 }
 </script>
