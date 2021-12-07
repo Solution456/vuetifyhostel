@@ -9,42 +9,171 @@
               {{error}}
           </v-alert>
          <v-card
+            class="mt-12"
             color="transparent"
             flat
+            max-width="650px"
           >
           
           <v-card-text>
             <v-form
               v-model='valid'>
-              <v-text-field
-                v-model="email"
-                background-color="white"
-                height=".5em"
-                dense
-                filled
-                rounded
-                color="primary"
-                prepend-inner-icon="mdi-account"
-                name="Email"
-                label="Email"
-                type="email"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="password"
-                background-color="white"
-                color="primary"
-                filled
-                height=".5em"
-                dense
-                rounded
-                prepend-inner-icon="mdi-lock"
-                name="password"
-                label="password"
-                id="password"
-                type="password"
-                required
-              ></v-text-field>
+              <v-container>
+                <v-row>
+                  <v-col
+                    cols="12"
+                    md="6"
+                  >
+                    <v-text-field
+                      
+                      v-model="email"
+                      background-color="white"
+                      height=".5em"
+                      dense
+                      filled
+                      rounded
+                      color="primary"
+                      prepend-inner-icon="mdi-account"
+                      name="Email"
+                      label="E-mail"
+                      type="email"
+                      required
+                      
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col
+                    cols="12"
+                    md="6">
+                      <v-text-field
+                        
+                        v-model="password"
+                        background-color="white"
+                        color="primary"
+                        filled
+                        height=".5em"
+                        dense
+                        rounded
+                        prepend-inner-icon="mdi-lock"
+                        name="password"
+                        label="Пароль"
+                        id="password"
+                        type="password"
+                        required
+                        
+                      ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col
+                    cols="12"
+                    md="4"
+                    >
+                      <v-text-field
+                        v-model="Name"
+                        background-color="white"
+                        color="primary"
+                        filled
+                        height=".5em"
+                        dense
+                        rounded
+                        prepend-inner-icon="mdi-lock"
+                        name="Name"
+                        label="Имя"
+                        id="name"
+                        type="text"
+                        required
+                        
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="4"
+                    >
+                      <v-text-field
+                        v-model="SecondName"
+                        background-color="white"
+                        color="primary"
+                        filled
+                        height=".5em"
+                        dense
+                        rounded
+                        prepend-inner-icon="mdi-lock"
+                        name="SecondName"
+                        label="Фамилия"
+                        id="secondname"
+                        type="text"
+                        required
+                        
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                    cols="12"
+                    md="4"
+                    >
+                      <v-text-field
+                        v-model="Floor"
+                        background-color="white"
+                        color="primary"
+                        filled
+                        height=".5em"
+                        dense
+                        rounded
+                        prepend-inner-icon="mdi-lock"
+                        name="Floor"
+                        label="Этаж"
+                        id="floor"
+                        type="text"
+                        required
+                        
+                      ></v-text-field>
+                    </v-col>
+                </v-row>
+                <v-row>
+                  <v-col
+                    cols="12"
+                    md="6">
+                      <v-text-field
+                
+                        v-model="Home"
+                        background-color="white"
+                        color="primary"
+                        filled
+                        height=".5em"
+                        dense
+                        rounded
+                        prepend-inner-icon="mdi-lock"
+                        name="Home"
+                        label="Квартира"
+                        id="home"
+                        type="text"
+                        required
+                        
+                      ></v-text-field>
+                  </v-col>
+
+                  <v-col
+                    cols="12"
+                    md="6">
+                      <v-text-field
+                        v-model="Phone"
+                        background-color="white"
+                        color="primary"
+                        filled
+                        height=".5em"
+                        dense
+                        rounded
+                        prepend-inner-icon="mdi-lock"
+                        name="Phone"
+                        label="Телефон"
+                        id="phone"
+                        type="text"
+                        required
+                        
+                      ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
             </v-form>
           </v-card-text>
           <v-card-actions text  style="justify-content:center">
@@ -73,6 +202,11 @@ export default {
     return{
       email:null,
       password:null,
+      Name:null,
+      SecondName:null,
+      Floor:null,
+      Home:null,
+      Phone:null,
       valid: false,
 
     }
@@ -94,7 +228,8 @@ export default {
 
   methods: {
     register(){
-      this.$store.dispatch('REGISTER',{email:this.email, password:this.password})
+      this.$store.dispatch('REGISTER',{email:this.email, password:this.password,
+      Name:this.Name, SecondName:this.SecondName, Floor:this.Floor,Home:this.Home,Phone:this.Phone})
     }
   }
 
@@ -110,6 +245,7 @@ export default {
     color: white !important;
   }
   .signIn{
+    
     position: relative;
     z-index: 99;
     .logo {
@@ -162,6 +298,10 @@ export default {
                     
         }
 
+    }
+
+    .text-field-size{
+      width: 50%;
     }
     
     .bg-sg{

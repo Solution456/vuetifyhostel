@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import store from '../store'
+
+// import store from '../store'
 import Profile from '../views/Profile.vue'
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -67,10 +70,11 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.name !== 'SignIn' && !store.getters.isUserAuthenticated) next({ name: 'SignIn' })
-  if (to.name !== 'AdminStage' && !store.getters.isUserAuthenticated) next({ name: 'AdminStage' })
-  else next()
-})
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== 'SignIn' && !store.getters.isUserAuthenticated) next({ name: 'SignIn' })
+//   else next()
+// })
+
 
 export default router
