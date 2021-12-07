@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
 // import store from '../store'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,16 @@ const routes = [
     // this generates a separate chunk (Register.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Register" */ '../views/register.vue')
+  },
+
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+    // route level code-splitting
+    // this generates a separate chunk (Profile.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    //component: () => import(/* webpackChunkName: "Profile" */ '../views/profile.vue')
   }
 ]
 
