@@ -4,11 +4,16 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import firebaseConfig from './config/firebase'
-import firebase from 'firebase/compat/app'
+
+import firebase from '@firebase/app-compat'
+import { getFirestore } from "firebase/firestore"
 
 Vue.config.productionTip = false
 
-firebase.initializeApp(firebaseConfig)
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
+
 
 new Vue({
   router,
@@ -16,3 +21,6 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+
+
+export default db 
