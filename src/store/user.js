@@ -1,8 +1,12 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
+import db from '../main.js'
+import { doc, setDoc } from "firebase/firestore";
+
 
 
 export default{
+    
     state: {
         user: {
             isAuthenticated: false,
@@ -23,23 +27,28 @@ export default{
         }
     },
     actions: {
+        
         REGISTER({commit}, payload){
             
             commit('SET_PROCESSING', true)
             commit('CLEAR_ERROR')
             firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-            .then(() => {
-            // Signed in 
-                commit('SET_PROCESSING', false)
-            // ...
-            })
-            .catch((error) => {
+            .then( cred =>{
+                return setDoc(doc(db,'users',cred.user.uid),{
+                    uid: cred.user.uid,
+                    Name: payload.Name,
+                    SecondName: payload.SecondName,
+                    Floor: payload.Floor,
+                    Home: payload.Home,
+                    Phone: payload.Phone,
+                })
+                    
                 
+            }).catch((error) =>{
                 commit('SET_PROCESSING', false)
                 commit('SET_ERROR', error.message)
-                
-            // ..
-            });
+            })
+            
         },
 
         SIGNIN({commit}, payload){
