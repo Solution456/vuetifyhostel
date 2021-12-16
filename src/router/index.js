@@ -60,7 +60,7 @@ const routes = [
   {
     path: '/adminStage',
     name: 'AdminStage',
-    // component: () => import(/* webpackChunkName: "Register" */ '../views/AdminStage.vue')
+    component: () => import(/* webpackChunkName: "Register" */ '../views/AdminStage.vue')
   }
 ]
 
