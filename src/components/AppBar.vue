@@ -111,16 +111,11 @@ export default {
                 },
 
                 {
-                    icon: 'mdi-file-tree-outline',
-                    title: 'Мероприятия',
-                    route: '',
+                    icon: '',
+                    title: 'Profile',
+                    route: '/profile',
                 },
-
-                {
-                    icon: 'mdi-file-tree-outline',
-                    title: 'Мероприятия',
-                    route: '',
-                } 
+ 
                 
 
             ]
