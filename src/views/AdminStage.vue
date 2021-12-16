@@ -21,10 +21,15 @@
       </v-list-item-content>
 
      
+      <v-btn
+     outlined
+      color="indigo"
+     large>
       <v-icon
-      size="81"
+      style="color: rgba(25, 118, 210, 1);"
       >
       mdi-stairs</v-icon>
+     </v-btn>
     </v-list-item>
   </v-card>
   <v-card
@@ -272,6 +277,9 @@ export default {
 }
 .theme--light.v-icon {
     color: rgba(25, 118, 210, 1);
+}
+.v-btn--outlined {
+    border: 0px;
 }
 
 </style>
