@@ -15,7 +15,9 @@
                 >mdi-door</v-icon>
 
         <v-card-subtitle
-        class="text-center">603</v-card-subtitle>
+        class="text-center">
+          <slot> <!-- {{user.floor}} --></slot>          
+        </v-card-subtitle>
         </v-layout>
        
     </v-container>

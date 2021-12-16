@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import db from '../main.js'
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc,} from "firebase/firestore";
 
 
 
@@ -18,6 +18,7 @@ export default{
             state.user.isAuthenticated = true,
             state.user.uid = payload
         },
+
 
         UNSET_USER(state){
             state.user = {
@@ -75,16 +76,22 @@ export default{
             firebase.auth().signOut()
         },
 
-        STATE_CHANGED({commit},payload){
+        STATE_CHANGED({commit, dispatch},payload){
             if(payload){
                 commit('SET_USER', payload.uid)
+                dispatch('LOAD_USER', payload.uid)
             }else{
                 commit('UNSET_USER')
             }
 
-        }
+        },
+
+        
+
+        
     },
     getters: {
-        isUserAuthenticated: (state) => state.user.isAuthenticated
+        isUserAuthenticated: (state) => state.user.isAuthenticated,
+        UserUid: (state) => state.user.uid
     }
 }

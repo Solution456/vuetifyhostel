@@ -2,7 +2,7 @@
   <v-container grid-list-xs>
     <div class="row">
        <div class="col col-4">
-          <FloorCard/>
+          <floor-card></floor-card>
         </div>
         <div class="col col-4">
           <FloorCard/>
@@ -20,6 +20,8 @@
           <FloorCard/>
         </div>
     </div>
+
+    <!-- <v-btn color="success" @click="getUserData"></v-btn> -->
       
        
 
@@ -41,6 +43,12 @@ export default {
 
   components:{
     FloorCard,
+  },
+
+  computed:{
+    getUserData(){
+      return this.$store.dispatch('LOAD_USER')
+    }
   },
 }
 </script>
