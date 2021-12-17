@@ -1,7 +1,4 @@
-.v-btn {
-  width: 55px;
-  min-width: 36px;
-}
+
 <template>
 <div class="text-center">
     <v-card 
