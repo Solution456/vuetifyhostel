@@ -42,6 +42,7 @@ export default{
                     Floor: payload.Floor,
                     Home: payload.Home,
                     Phone: payload.Phone,
+                    Permissions:payload.Permissions
                 })
                     
                 
@@ -80,6 +81,7 @@ export default{
             if(payload){
                 commit('SET_USER', payload.uid)
                 dispatch('LOAD_USER', payload.uid)
+                dispatch('LOAD_EVENTS')
             }else{
                 commit('UNSET_USER')
             }

@@ -16,8 +16,7 @@ export default{
           Vue.set(state,'userData',payload)
       } ,
       SET_ALL_USERS_DATA(state, payload){
-        //   Vue.set(state, 'UsersData', payload)
-        state.UsersData = payload
+          Vue.set(state, 'UsersData', payload)
       }
     },
 

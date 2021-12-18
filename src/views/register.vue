@@ -77,7 +77,7 @@
                         height=".5em"
                         dense
                         rounded
-                        prepend-inner-icon="mdi-lock"
+                        prepend-inner-icon="mdi-card-account-details"
                         name="Name"
                         label="Имя"
                         id="name"
@@ -98,7 +98,7 @@
                         height=".5em"
                         dense
                         rounded
-                        prepend-inner-icon="mdi-lock"
+                        prepend-inner-icon="mdi-card-account-details"
                         name="SecondName"
                         label="Фамилия"
                         id="secondname"
@@ -119,7 +119,7 @@
                         height=".5em"
                         dense
                         rounded
-                        prepend-inner-icon="mdi-lock"
+                        prepend-inner-icon="mdi-home-floor-3"
                         name="Floor"
                         label="Этаж"
                         id="floor"
@@ -132,7 +132,7 @@
                 <v-row>
                   <v-col
                     cols="12"
-                    md="6">
+                    md="4">
                       <v-text-field
                 
                         v-model="Home"
@@ -142,7 +142,7 @@
                         height=".5em"
                         dense
                         rounded
-                        prepend-inner-icon="mdi-lock"
+                        prepend-inner-icon="mdi-home-minus"
                         name="Home"
                         label="Квартира"
                         id="home"
@@ -154,7 +154,7 @@
 
                   <v-col
                     cols="12"
-                    md="6">
+                    md="4">
                       <v-text-field
                         v-model="Phone"
                         background-color="white"
@@ -163,7 +163,7 @@
                         height=".5em"
                         dense
                         rounded
-                        prepend-inner-icon="mdi-lock"
+                        prepend-inner-icon="mdi-phone-in-talk"
                         name="Phone"
                         label="Телефон"
                         id="phone"
@@ -171,6 +171,18 @@
                         required
                         
                       ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    md="4">
+                      <v-select
+                        :items="items"
+                        v-model="Permission"
+                        label="Permisions"
+                        dense
+                        rounded
+                        solo
+                      ></v-select>
                   </v-col>
                 </v-row>
               </v-container>
@@ -207,7 +219,9 @@ export default {
       Floor:null,
       Home:null,
       Phone:null,
+      Permission:null,
       valid: false,
+      items: ['Староста', 'Студент','Admin'],
 
     }
   },
@@ -229,7 +243,7 @@ export default {
   methods: {
     register(){
       this.$store.dispatch('REGISTER',{email:this.email, password:this.password,
-      Name:this.Name, SecondName:this.SecondName, Floor:this.Floor,Home:this.Home,Phone:this.Phone})
+      Name:this.Name, SecondName:this.SecondName, Floor:this.Floor,Home:this.Home,Phone:this.Phone,Permissions:this.Permission,})
     }
   }
 

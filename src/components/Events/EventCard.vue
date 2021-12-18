@@ -13,7 +13,7 @@
                             {{event.title}}
                         </v-card-title>
                         <v-card-subtitle>
-                            {{event.dateEvents}}
+                            {{event.date | formatedDate}}
                         </v-card-subtitle>
 
                         <v-card-actions>

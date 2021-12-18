@@ -30,7 +30,7 @@
             <v-list-item v-show="mini" class="px-2 d-none d-sm-flex"> 
                 <v-list-item-content>
                     <v-list-item-title class="text-h6">
-                        Denis Dyukin
+                        {{UserData.Name + ' ' + UserData.SecondName}}
                     </v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
@@ -77,6 +77,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
     name: 'AppBar',
     data() {
@@ -87,6 +89,7 @@ export default {
         
     },
     computed: {
+        ...mapGetters(['UserData']),
         isUserAuthenticated(){
           return this.$store.getters.isUserAuthenticated
         },

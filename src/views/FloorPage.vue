@@ -58,6 +58,7 @@ import { mapGetters } from 'vuex'
 
 
   export default {
+    name:'FloorPage',
     props:{
         'Floor':{
             Type: String,

@@ -71,17 +71,26 @@ const routes = [
   {
     path: '/adminStage',
     name: 'AdminStage',
-    component: () => import(/* webpackChunkName: "Register" */ '../views/AdminStage.vue')
+    // route level code-splitting
+    // this generates a separate chunk (AdminStage.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "AdminStage" */ '../views/AdminStage.vue')
   },
   {
     path: '/adminRooms',
     name: 'adminRooms',
-    component: () => import(/* webpackChunkName: "Register" */ '../views/adminRooms.vue')
+    // route level code-splitting
+    // this generates a separate chunk (adminRooms.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "adminRooms" */ '../views/adminRooms.vue')
   },
   {
     path: '/residentTable',
     name: 'residentTable',
-    component: () => import(/* webpackChunkName: "Register" */ '../views/residentTable.vue')
+    // route level code-splitting
+    // this generates a separate chunk (residentTable.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "residentTable" */ '../views/residentTable.vue')
   }
 ]
 
