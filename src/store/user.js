@@ -38,6 +38,7 @@ export default{
                 return setDoc(doc(db,'users',cred.user.uid),{
                     uid: cred.user.uid,
                     Name: payload.Name,
+                    Email:payload.email,
                     SecondName: payload.SecondName,
                     Floor: payload.Floor,
                     Home: payload.Home,
