@@ -12,7 +12,6 @@
 <script>
 
 import AppBar from './components/AppBar.vue';
-import firebase from 'firebase/compat/app'
 
 export default {
   name: 'App',
@@ -29,10 +28,7 @@ export default {
 
   created(){
     this.checkRoute()
-    let vm = this
-    firebase.auth().onAuthStateChanged((user) => {
-      vm.$store.dispatch('STATE_CHANGED', user)
-});
+    
   },
 
   computed:{

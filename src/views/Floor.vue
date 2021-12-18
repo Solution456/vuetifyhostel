@@ -1,35 +1,11 @@
 <template>
   <v-container grid-list-xs>
     <div class="row">
-       <div class="col col-4">
-          <floor-card></floor-card>
+       <div class="col col-4" v-for="i in 6" :key="i">
+          <floor-card :user = 'UserData' :id = 'i'>{{UserData.Floor * 100 + i}}</floor-card>
         </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
+        
     </div>
-
-    <!-- <v-btn color="success" @click="getUserData"></v-btn> -->
-      
-       
-
-        
-        
-        
-          
-        
     
   </v-container>
 </template>
@@ -37,6 +13,7 @@
 <script>
 
 import FloorCard from '../components/Floor/FloorCard.vue'
+import {mapGetters} from 'vuex'
 export default {
 
   name:'Floor',
@@ -45,10 +22,14 @@ export default {
     FloorCard,
   },
 
-  computed:{
-    getUserData(){
-      return this.$store.dispatch('LOAD_USER')
+  data(){
+    return {
+      i:1,
     }
+  },
+
+  computed:{
+    ...mapGetters(['UserData'])
   },
 }
 </script>
