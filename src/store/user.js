@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import db from '../main.js'
-import { doc, setDoc,} from "firebase/firestore";
+import { doc, setDoc} from "firebase/firestore";
 
 
 

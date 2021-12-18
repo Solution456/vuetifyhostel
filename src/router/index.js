@@ -71,6 +71,11 @@ const routes = [
     path: '/residentTable',
     name: 'residentTable',
     component: () => import(/* webpackChunkName: "Register" */ '../views/residentTable.vue')
+  },
+  {
+    path: '/attendedevents',
+    name: 'AttendedEvents',
+    component: () => import(/* webpackChunkName: "Register" */ '../views/AttendedEvents.vue')
   }
 ]
 

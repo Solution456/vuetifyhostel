@@ -88,7 +88,7 @@
           <v-btn
             color="primary"
             text
-            @click="dialog = false"
+            @click="addEvents()"
             class='mx-auto'
           >
             <v-icon size="32px">mdi-checkbox-marked-circle</v-icon>
@@ -103,9 +103,19 @@
   export default {
     data: () => ({
       dialog: false,
+      nameEvents: null,
+      dateEvents: null,
+      fileEvents: null
     }),
 
+    methods: {
+      addEvents() {
+        this.dialog = false
+        console.log('yes')
+        return this.$store.dispatch('LOAD_USER_EVENTS', {nameEvents: this.nameEvents, dateEvents: this.dateEvents})
+      }
     }
+  }
 </script>
 <style scoped>
 
