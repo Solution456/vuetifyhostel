@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
+
 // import store from '../store'
 import Profile from '../views/Profile.vue'
 
@@ -29,6 +30,16 @@ const routes = [
     // this generates a separate chunk (Floor.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "floor" */ '../views/Floor.vue'),
+  },
+
+  {
+    path: '/floor/:Floor',
+    name: 'FloorPage',
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (FloorPage.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "FloorPAge" */ '../views/FloorPage.vue'),
   },
   {
     path: '/signin',
@@ -63,13 +74,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "Register" */ '../views/AdminStage.vue')
   },
   {
-    path: '/adminRooms',
+    path: '/adminRooms/:floor',
     name: 'adminRooms',
+    props: true,
     component: () => import(/* webpackChunkName: "Register" */ '../views/adminRooms.vue')
   },
   {
-    path: '/residentTable',
+    path: '/residentTable/:room',
     name: 'residentTable',
+    props: true,
     component: () => import(/* webpackChunkName: "Register" */ '../views/residentTable.vue')
   },
   {

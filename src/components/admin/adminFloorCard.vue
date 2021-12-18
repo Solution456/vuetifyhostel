@@ -5,7 +5,6 @@
     class="mx-auto white--text"
     rounded="xl"
     link
-    :to="{name:'FloorPage', params:{Floor:user.Floor * 100 + id}}"
     color="rgba(0, 122, 255, 0.75)"
     >
     <v-container fluid fill-height>
@@ -17,7 +16,7 @@
 
         <v-card-subtitle
         class="text-center">
-          <slot> Floor</slot>          
+          <slot> </slot>          
         </v-card-subtitle>
         </v-layout>
        
@@ -30,16 +29,9 @@
 
 <script>
 export default {
-    name: 'FloorCard',
+    name: 'adminFloorCard',
     props:{
-      'user':{
-        Type: Object,
-        require:true
-      },
-      'id':{
-        Type: Number,
-        require:true
-      }
+      
     },
 
 }
