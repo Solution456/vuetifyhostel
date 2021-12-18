@@ -13,7 +13,7 @@
       >
          <v-list-item-title class="text-h5 mb-1"
          >
-          603 Квартира 
+          {{room}} Квартира 
         </v-list-item-title>
       </v-list-item-content>
 
@@ -21,7 +21,9 @@
      <v-btn
      outlined
       color="indigo"
-     large>
+     large
+     :to="{name:'adminRooms', params:{floor: Math.floor(room/100)}}"
+     >
       <v-icon
       style="color: rgba(25, 118, 210, 1);"
       >
@@ -38,7 +40,7 @@ rounded="xl"
   <div>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="AllUsersData"
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="elevation-1"
@@ -49,7 +51,15 @@ rounded="xl"
 </div>
 </template>
 <script>
+
+import { mapGetters } from 'vuex'
   export default {
+     props:{
+        'room':{
+            Type: String,
+            require:true
+        }
+    },
     data () {
       return {
         sortBy: 'fat',
@@ -64,64 +74,18 @@ rounded="xl"
           { text: 'Email', value: 'email' },
           { text: 'Баллы', value: 'balls' },
         ],
-        desserts: [
-          {
-            name: 'Рыбаков Кирилл',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Аскаров Эрик',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Дюкин Денис',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Рыбаков Кирилл',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Рыбаков Кирилл',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Рыбаков Кирилл',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Рыбаков Кирилл',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Рыбаков Кирилл',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-          {
-            name: 'Рыбаков Кирилл',
-            phoneNumber: 159,
-            email: 6.0,
-            balls: 24,
-          },
-       ],
       }
     },
+    
+        computed:{
+            ...mapGetters(['AllUsersData']),
+        // getUsers(){
+
+            
+        //     return this.$store.dispatch('LOAD_ALL_USERS',this.room)
+        // }
+    },
+
     methods: {
       toggleOrder () {
         this.sortDesc = !this.sortDesc
@@ -131,7 +95,16 @@ rounded="xl"
         index = (index + 1) % this.headers.length
         this.sortBy = this.headers[index].value
       },
-    },
+
+     GetMet(){
+        
+        return this.$store.dispatch('LOAD_ALL_USERS',this.room)
+      }
+      },
+
+      created(){
+          this.GetMet()
+      }
   }
 </script>
 <style>

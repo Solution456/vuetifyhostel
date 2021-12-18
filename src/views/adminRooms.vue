@@ -38,7 +38,7 @@ rounded="xl"
     <v-container grid-list-xs>
     <div class="row">
        <div class="col col-4" v-for="i in 6" :key="i">
-          <admin-floor-card> {{floor*100+i}} </admin-floor-card>  
+          <admin-floor-card :room="floor*100+i"> {{floor*100+i}} </admin-floor-card>  
         </div>
     </div>
     </v-container>        
