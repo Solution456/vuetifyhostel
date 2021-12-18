@@ -18,7 +18,7 @@
               src='https://randomuser.me/api/portraits/women/85.jpg'
               >
             </v-avatar>
-            <span class='white--text'>{{ name }}</span>         
+            <span class='white--text'>{{ UserData.Name + ' ' + UserData.SecondName }}</span>         
           </v-row>
 
           <v-row 
@@ -36,12 +36,11 @@
                 <v-text-field
                 solo
                 rounded
-                v-model="etaj"
+                v-model="UserData.Floor"
                 class='centered-input'
                 readonly
                 
                 >
-                {{ etaj }}
                 </v-text-field>
               </v-row>
             </v-col>
@@ -54,11 +53,10 @@
                 <v-text-field 
                 solo
                 rounded
-                v-model='blok'
+                v-model='UserData.Home'
                 class='centered-input'
                 readonly
-                >            
-                {{ blok }}
+                >
                 </v-text-field>
               </v-row>
             </v-col>
@@ -77,11 +75,10 @@
                 <v-text-field 
                 solo 
                 rounded
-                v-model="phone"
+                v-model="UserData.Phone"
                 class='centered-input'
                 readonly           
                 >
-                  {{ phone }}
                 </v-text-field>
               </v-row>
             </v-col>           
@@ -135,7 +132,7 @@
 
 <script>
 import AddEvent from '../components/AddEvent.vue'
-
+import { mapGetters } from "vuex"
 export default {
   components: { 
     AddEvent 
@@ -144,14 +141,13 @@ export default {
   name: 'Profile',
   data() {
     return {
-      name: 'Эрик Аскаров',
-      image: '',
-      etaj: '6',
-      blok: '603',
-      phone: '89991003038',
       ballsSSO: 30,
       ballsAdm: 25
     }
+  },
+
+  computed: {
+    ...mapGetters(['UserData'])
   }
 }
 </script>
