@@ -13,14 +13,15 @@
       >
          <v-list-item-title class="text-h5 mb-1"
          >
-          6 этаж 
+          {{floor}} этаж 
         </v-list-item-title>
       </v-list-item-content>
 
      <v-btn
      outlined
       color="indigo"
-     large>
+     large
+     :to="{name:'AdminStage'}">
       <v-icon
       style="color: rgba(25, 118, 210, 1);"
       >
@@ -36,23 +37,8 @@ rounded="xl"
     outlined>
     <v-container grid-list-xs>
     <div class="row">
-       <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
-        </div>
-        <div class="col col-4">
-          <FloorCard/>
+       <div class="col col-4" v-for="i in 6" :key="i">
+          <admin-floor-card> {{floor*100+i}} </admin-floor-card>  
         </div>
     </div>
     </v-container>        
@@ -62,13 +48,21 @@ rounded="xl"
 
 <script>
 
-import FloorCard from '../components/Floor/FloorCard.vue'
+import adminFloorCard from '../components/admin/adminFloorCard.vue'
 export default {
 
   name:'Floor',
+  props:{
+    "floor":{type:String, require: true}
+  },
+  data(){
+    return{
+      i:1
+    }
+  },
 
   components:{
-    FloorCard,
+    adminFloorCard,
   },
 }
 </script>

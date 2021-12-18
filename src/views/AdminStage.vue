@@ -54,6 +54,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:3}}"
             >
               3 этаж
              </v-btn>
@@ -64,6 +65,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:7}}"
             >
               7 этаж
             </v-btn>
@@ -74,6 +76,7 @@
                 rounded
                 color="primary"
                 dark
+                :to="{name:'adminRooms', params:{floor:11}}"
               >
                 11 этаж
               </v-btn>
@@ -84,6 +87,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:15}}"
             >
               15 этаж
             </v-btn>
@@ -100,6 +104,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:4}}"
             >
               4 этаж
              </v-btn>
@@ -110,6 +115,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:8}}"
             >
               8 этаж
             </v-btn>
@@ -120,6 +126,7 @@
                 rounded
                 color="primary"
                 dark
+                :to="{name:'adminRooms', params:{floor:12}}"
               >
                 12 этаж
               </v-btn>
@@ -130,6 +137,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:16}}"
             >
               16 этаж
             </v-btn>
@@ -146,6 +154,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:5}}"
             >
               5 этаж
              </v-btn>
@@ -156,6 +165,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:9}}"
             >
               9 этаж
             </v-btn>
@@ -166,6 +176,7 @@
                 rounded
                 color="primary"
                 dark
+                :to="{name:'adminRooms', params:{floor:13}}"
               >
                 13 этаж
               </v-btn>
@@ -176,6 +187,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:17}}"
             >
               17 этаж
             </v-btn>
@@ -192,6 +204,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:6}}"
             >
               6 этаж
              </v-btn>
@@ -202,6 +215,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:10}}"
             >
               10 этаж
             </v-btn>
@@ -212,6 +226,7 @@
                 rounded
                 color="primary"
                 dark
+                :to="{name:'adminRooms', params:{floor:14}}"
               >
                14 этаж
               </v-btn>
@@ -222,6 +237,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:18}}"
             >
               18 этаж
             </v-btn>
@@ -241,6 +257,7 @@
               rounded
               color="primary"
               dark
+              :to="{name:'adminRooms', params:{floor:19}}"
             >
               19 этаж
             </v-btn>

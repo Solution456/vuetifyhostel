@@ -63,13 +63,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "Register" */ '../views/AdminStage.vue')
   },
   {
-    path: '/adminRooms',
+    path: '/adminRooms/:floor',
     name: 'adminRooms',
+    props: true,
     component: () => import(/* webpackChunkName: "Register" */ '../views/adminRooms.vue')
   },
   {
-    path: '/residentTable',
+    path: '/residentTable/:room',
     name: 'residentTable',
+    props: true,
     component: () => import(/* webpackChunkName: "Register" */ '../views/residentTable.vue')
   }
 ]
