@@ -1,9 +1,12 @@
 import 'firebase/compat/auth'
 import db from '../main.js'
-import {collection,getDocs, setDoc, doc} from "firebase/firestore";
+import { storage } from '../main.js';
+import { ref, getDownloadURL,uploadBytes } from "firebase/storage";
+import {collection,getDocs, setDoc, doc,} from "firebase/firestore";
 import Vue from 'vue'
 
 export default{
+    
     state: {
         events: null
         // events:
@@ -78,7 +81,7 @@ export default{
         LOAD_EVENTS({commit}){
             commit('SET_PROCESSING', true)
             commit('CLEAR_ERROR')
-
+            
             let EventsData = []
 
             getDocs(collection(db,'events')).then((querySnap)=>{
@@ -108,20 +111,47 @@ export default{
         ADD_EVENT({commit}, payload){
             commit('SET_PROCESSING', true)
             commit('CLEAR_ERROR')
-
-            setDoc(doc(db,'events'), {
-                id:doc.id,
-                title:payload.title,
-                imgUrl:payload.imgUrl,
-                date:payload.date,
-                location:payload.location,
-                description:payload.description
-            }).then(() =>{
-                commit('SET_PROCESSING', false)
+            const filename = payload.img.name
+            const storRef = ref(storage,`events/${filename}`)
+            console.log(storRef)
+            let imgUrl
+            uploadBytes(storRef,payload.img).then(() => {
+                getDownloadURL(storRef).then((url) => {
+                    imgUrl = url
+                    let event = {
+                        title:payload.title,
+                        date:payload.date,
+                        location:payload.location,
+                        description:payload.description,
+                        imgUrl: imgUrl
+                    }
+                    
+                    
+                    
+                    const refDoc = doc(collection(db,'events'))
+                    setDoc(refDoc, {
+                        ...event,
+                        id:refDoc.id
+                    }).then( () =>{
+                        commit('SET_PROCESSING',false)
+                    })
+                    .catch((error) =>{
+                        commit('SET_PROCESSING', false)
+                        commit('SET_ERROR', error.message)
+                    })
+                    
+                })
             }).catch((error) =>{
                 commit('SET_PROCESSING', false)
                 commit('SET_ERROR', error.message)
             })
+            
+           
+
+            
+        
+            
+           
         }
     },
 

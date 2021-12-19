@@ -43,7 +43,8 @@ export default{
                     Floor: payload.Floor,
                     Home: payload.Home,
                     Phone: payload.Phone,
-                    Permissions:payload.Permissions
+                    Permissions:payload.Permissions,
+                    Marks:0
                 })
                     
                 

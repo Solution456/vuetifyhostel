@@ -1,6 +1,20 @@
 <template>
   <v-container grid-list-xs>
-    <h2 class="ma-4">Ближайшие мероприятия</h2>
+    <v-row class="align">
+      <v-col
+        cols="12"
+        md="6">
+        <h2 class="ma-4">Ближайшие мероприятия</h2>
+      </v-col>
+      <v-col
+        cols="12"
+        md="6"
+        class="alignContent">
+          
+          <load-event-dialog></load-event-dialog>
+      </v-col>
+    </v-row>
+    
      <v-layout row wrap>
        <div class="col" v-for="event in CloseEvents" :key="event.id">
          <event-card :event="event"></event-card>
@@ -20,10 +34,12 @@
 
 <script>
 import EventCard from '../components/Events/EventCard.vue'
+import LoadEventDialog from '../components/Events/LoadEventDialog.vue'
 
 export default {
   components: {
     EventCard,
+    LoadEventDialog,
   },
 
   computed: {
@@ -65,6 +81,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .align{
+    align-items: center;
+  }
+  .alignContent{
+    text-align: end;
+  }
 </style>
