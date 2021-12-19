@@ -5,6 +5,7 @@
     class="mx-auto white--text"
     rounded="xl"
     link
+    :to="{name:'residentTable', params:{room:room}}"
     color="rgba(0, 122, 255, 0.75)"
     >
     <v-container fluid fill-height>
@@ -31,6 +32,10 @@
 export default {
     name: 'adminFloorCard',
     props:{
+      'room':{
+        Type: Number,
+        require:true
+      }
       
     },
 

@@ -8,11 +8,14 @@ import firebaseConfig from './config/firebase'
 import firebase from '@firebase/app-compat'
 import { getFirestore } from "firebase/firestore"
 
+import formatedDate from './fillters/formatedDate'
+
 Vue.config.productionTip = false
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
+Vue.filter('formatedDate',formatedDate)
 
 
 new Vue({

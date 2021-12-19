@@ -7,7 +7,7 @@
        </div>
      </v-layout>
 
-      <h2 class="ma-4">Другие мероприятия</h2>
+      <h2 v-if="OtherEvents != null" class="ma-4">Другие мероприятия</h2>
       <v-layout row wrap>
        <div class="col col-4" v-for="event in OtherEvents" :key="event.id">
          <event-card :event="event"></event-card>
@@ -52,9 +52,14 @@ export default {
       if(events){
         SortEvents =  events.sort((a, b) => new Date(b.date) - new Date(a.date))
       }
-      let arr = SortEvents.slice(0,2)
-      let OtherEvents = SortEvents.filter(f => arr.indexOf(f) < 0)
-      return OtherEvents
+      if(SortEvents.length > 2){
+        let arr = SortEvents.slice(0,2)
+        let OtherEvents = SortEvents.filter(f => arr.indexOf(f) < 0)
+        return OtherEvents
+      }
+      else
+        return null
+      
     }
   }
 }

@@ -38,10 +38,12 @@ export default{
                 return setDoc(doc(db,'users',cred.user.uid),{
                     uid: cred.user.uid,
                     Name: payload.Name,
+                    Email:payload.email,
                     SecondName: payload.SecondName,
                     Floor: payload.Floor,
                     Home: payload.Home,
                     Phone: payload.Phone,
+                    Permissions:payload.Permissions
                 })
                     
                 
@@ -81,6 +83,8 @@ export default{
                 commit('SET_USER', payload.uid)
                 dispatch('LOAD_USER', payload.uid)
                 dispatch('LOAD_ALL_EVENTS',payload.uid)
+
+                dispatch('LOAD_EVENTS')
             }else{
                 commit('UNSET_USER')
             }
