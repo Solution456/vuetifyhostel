@@ -107,8 +107,9 @@ import { mapGetters } from 'vuex'
       },
 
      GetMet(){
-        
+        console.log(this.AllUsersData)
         return this.$store.dispatch('LOAD_ALL_USERS',this.Floor)
+
       }
       },
 

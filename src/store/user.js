@@ -83,6 +83,8 @@ export default{
             if(payload){
                 commit('SET_USER', payload.uid)
                 dispatch('LOAD_USER', payload.uid)
+                dispatch('LOAD_ALL_EVENTS',payload.uid)
+
                 dispatch('LOAD_EVENTS')
             }else{
                 commit('UNSET_USER')
