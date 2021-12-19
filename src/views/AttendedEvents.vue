@@ -26,7 +26,7 @@
       <div>
         <v-data-table
           :headers="headers"
-          :items="desserts"
+          :items="Object.values(listEvents['events'])"
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           class="elevation-1"
@@ -37,9 +37,30 @@
 </template>
 
 <script>
-//import { mapGetters } from "vuex"
+import {mapGetters} from "vuex"
 
 export default {
+  data() {
+    
+    return {
+      headers: [
+          {
+            text: 'Название',
+            align: 'start',
+            value: 'nameEvents',
+          },
+          { text: 'Дата', value: 'dateEvents' },
+        ],
+    }
+  },
+  
+  computed: {
+
+  ...mapGetters(['listEvents'])
+      
+
+    },
+
   methods: {
       toggleOrder () {
         this.sortDesc = !this.sortDesc
@@ -49,6 +70,11 @@ export default {
         index = (index + 1) % this.headers.length
         this.sortBy = this.headers[index].value
       },
-    },
+      getAr(){
+        
+        return this.listEvents
+      }
+    }
+    
 }
 </script>

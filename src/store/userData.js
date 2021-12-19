@@ -1,4 +1,3 @@
-
 import 'firebase/compat/auth'
 import db from '../main.js'
 import { doc, getDoc, collection, query, where, getDocs} from "firebase/firestore";
@@ -16,8 +15,7 @@ export default{
           Vue.set(state,'userData',payload)
       } ,
       SET_ALL_USERS_DATA(state, payload){
-        //   Vue.set(state, 'UsersData', payload)
-        state.UsersData = payload
+        Vue.set(state, 'UsersData', payload)
       }
     },
 
@@ -49,7 +47,7 @@ export default{
             console.log(typeof(payload))
             let UsersData = []
             const q = query(collection(db,'users'), where('Home', '==', String(payload)))
-            console.log(getDocs(q))
+            
             getDocs(q).then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const data = doc.data()
@@ -61,7 +59,7 @@ export default{
 
 
                     }
-                    console.log(data)
+                    /* console.log(data) */
                     UsersData.push(user)
                 })
 
