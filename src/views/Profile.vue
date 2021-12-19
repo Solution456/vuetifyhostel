@@ -125,7 +125,7 @@
           </v-row>
         </v-layout>
       </v-container>
-      <AddEvent></AddEvent>
+      <AddEvent :floor = 'UserData.Floor'></AddEvent>
     </v-container>
   </div>
 </template>

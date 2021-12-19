@@ -33,6 +33,15 @@ const routes = [
   },
 
   {
+    path: '/task',
+    name: 'Tasks',
+    // route level code-splitting
+    // this generates a separate chunk (Tasks.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "Tasks" */ '../views/Task.vue'),
+  },
+
+  {
     path: '/floor/:Floor',
     name: 'FloorPage',
     props: true,
@@ -79,16 +88,18 @@ const routes = [
   {
     path: '/adminRooms/:floor',
     name: 'adminRooms',
+    props: true,
     // route level code-splitting
     // this generates a separate chunk (adminRooms.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "adminRooms" */ '../views/adminRooms.vue'),
-    props: true,
+    
 
   },
   {
     path: '/residentTable/:room',
     name: 'residentTable',
+    props:true,
     // route level code-splitting
     // this generates a separate chunk (residentTable.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

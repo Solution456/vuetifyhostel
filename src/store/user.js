@@ -1,7 +1,8 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import db from '../main.js'
-import { doc, setDoc} from "firebase/firestore";
+import { doc, setDoc, updateDoc} from "firebase/firestore";
+import Vue from 'vue';
 
 
 
@@ -10,7 +11,8 @@ export default{
     state: {
         user: {
             isAuthenticated: false,
-            uid: null
+            uid: null,
+            balls:0
         }
     },
     mutations: {
@@ -25,6 +27,10 @@ export default{
                 isAuthenticated: false,
                 uid: null
             }
+        },
+
+        SET_USER_BALLS(state,payload){
+            Vue.set(state.user, 'balls', {balls:payload})
         }
     },
     actions: {
@@ -44,7 +50,7 @@ export default{
                     Home: payload.Home,
                     Phone: payload.Phone,
                     Permissions:payload.Permissions,
-                    Marks:0
+                    balls:0
                 })
                     
                 
@@ -91,6 +97,24 @@ export default{
             }
 
         },
+
+        UPDATE_USER_BALLS({commit,getters}, payload){
+          
+
+            const docRef = doc(db,'users',payload.uid)
+            let data = +getters.UserData.balls + +payload.balls
+            updateDoc(docRef,{
+                balls: data
+            }).then(() =>{
+                commit('SET_USER_BALLS',payload.data)
+                
+            }).catch(error =>{
+                console.log(error.message)
+                commit('SET_PROCESSING',false)
+            })
+
+      
+        }
 
         
 
