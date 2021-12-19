@@ -2,7 +2,8 @@ import db from '../main.js'
 import { doc, setDoc, getDoc} from "firebase/firestore"
 import { v4 as uuidv4 } from 'uuid'
 import Vue from 'vue'
-
+import { getDownloadURL, uploadBytes, ref } from 'firebase/storage'
+import { storage } from '../main.js'
 export default{
   state: {
     listUserEvents: null,
@@ -23,23 +24,37 @@ export default{
     LOAD_USER_EVENTS({commit,getters}, payload) {
       commit('SET_PROCESSING', true)
       commit('CLEAR_ERROR')
-      let event = {
-        nameEvents: payload.nameEvents,
-        dateEvents: payload.dateEvents,
-        //fileEvents: payload.fileEvents,
-        id: uuidv4()
-      }
-      
-      const docRef = doc(db, 'usersEvents',getters.UserUid)
-      setDoc(docRef, {
-        events: {
-          [payload.nameEvents]: event
-        }
-      }, { merge: true }).then(() =>{
-        
-        commit('SET_PROCESSING', false)
-      
-      }).catch(error => {
+      const filename = payload.fileEvents.name
+      console.log(filename)
+      console.log(typeof (payload.fileEvents))
+      const storRef = ref(storage,`eventsStudent/${filename}`)
+      console.log(storRef)
+      let imgUrl
+      uploadBytes(storRef,payload.fileEvents).then(() => {
+        getDownloadURL(storRef).then((url) => {
+          imgUrl = url
+          let event = {
+            nameEvents: payload.nameEvents,
+            dateEvents: payload.dateEvents,
+            fileEvents: imgUrl,
+            id: uuidv4()
+          }
+          
+          const docRef = doc(db, 'usersEvents', getters.UserUid)
+          setDoc(docRef, {
+            events: {
+              [payload.nameEvents]: event
+            }
+          }, { merge: true }).then(() =>{
+            
+            commit('SET_PROCESSING', false)
+          
+          }).catch(error => {
+            commit('SET_PROCESSING', false)
+            commit('SET_ERROR', error.message)
+          })
+        })
+      }).catch((error) =>{
         commit('SET_PROCESSING', false)
         commit('SET_ERROR', error.message)
       })
