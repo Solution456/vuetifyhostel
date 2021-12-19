@@ -77,9 +77,10 @@
                 style="max-width: 200px"
                 outlined
                 dense
+                accept="image/png, image/jpeg, image/bmp"
                 prepend-icon="mdi-camera"
                 v-model='fileEvents'
-              ></v-file-input>  
+              ></v-file-input>
             </p>
           </v-col>
         </v-row>
@@ -111,15 +112,19 @@
       dialog: false,
       nameEvents: null,
       dateEvents: null,
-      fileEvents: null
+      fileEvents: null,
+      imgUrl: null
     }),
 
     methods: {
       addEvents() {
         this.dialog = false
+        console.log(this.fileEvents)
         console.log('yes')
-        return this.$store.dispatch('LOAD_USER_EVENTS', {nameEvents: this.nameEvents, dateEvents: this.dateEvents, Floor:this.floor})
-      }
+
+        return this.$store.dispatch('LOAD_USER_EVENTS', {nameEvents: this.nameEvents, dateEvents: this.dateEvents, Floor:this.floor, fileEvents: this.fileEvents})
+      },
+
     }
   }
 </script>
