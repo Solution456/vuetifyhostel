@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import formatedDate from '../../fillters/formatedDate'
 export default {
     props:{
         'task':{
@@ -116,7 +117,7 @@ export default {
         return{
             dialog:false,
             title:this.task.nameEvents,
-            date:this.task.dateEvents,
+            date:formatedDate(this.task.dateEvents),
             imgUrl:this.task.fileEvents,
             balls:null,
         }

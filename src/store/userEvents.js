@@ -52,6 +52,8 @@ export default{
           
           const docRef = doc(db, 'usersEvents', getters.UserUid)
           setDoc(docRef, {
+            Floor:payload.Floor,
+            uid:getters.UserUid,
             events: {
               [payload.nameEvents]: event
             }

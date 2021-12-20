@@ -10,7 +10,7 @@
           {{task.nameEvents}}
         </div>
         <v-list-item-title class="text-h5 mb-1">
-          {{task.dateEvents}}
+          {{task.dateEvents | formatedDate}}
         </v-list-item-title>
       </v-list-item-content>
 
