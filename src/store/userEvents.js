@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Vue from 'vue'
 import { getDownloadURL, uploadBytes, ref } from 'firebase/storage'
 import { storage } from '../main.js'
+import formatedDate from '../fillters/formatedDate.js'
 
 export default{
   state: {
@@ -42,9 +43,10 @@ export default{
       uploadBytes(storRef,payload.fileEvents).then(() => {
         getDownloadURL(storRef).then((url) => {
           imgUrl = url
+
           let event = {
             nameEvents: payload.nameEvents,
-            dateEvents: payload.dateEvents,
+            dateEvents: formatedDate(payload.dateEvents),
             fileEvents: imgUrl,
             status:'Обработка',
             id: uuidv4(),
@@ -104,9 +106,7 @@ export default{
       const docRef = doc(db, 'usersEvents', payload)
       getDoc(docRef).then((querySnapshot) => {
         if(querySnapshot.exists()){
-
-          UsersEvents = querySnapshot.data()
-          
+          UsersEvents = querySnapshot.data()      
         }
 
         commit('SET_USER_EVENTS', UsersEvents)
