@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Vue from 'vue'
 import { getDownloadURL, uploadBytes, ref } from 'firebase/storage'
 import { storage } from '../main.js'
+
 export default{
   state: {
     taskList:null,
