@@ -55,6 +55,7 @@
                 <v-text-field
                   solo
                   rounded
+                  type="date"
                   class='centered-input widthDate'
                   hide-details='true'
                   v-model='dateEvents'
@@ -122,7 +123,7 @@
         console.log(this.fileEvents)
         console.log('yes')
 
-        return this.$store.dispatch('LOAD_USER_EVENTS', {nameEvents: this.nameEvents, dateEvents: this.dateEvents, Floor:this.floor, fileEvents: this.fileEvents})
+        return this.$store.dispatch('LOAD_USER_EVENTS', {nameEvents: this.nameEvents, dateEvents: new Date(this.dateEvents), Floor:this.floor, fileEvents: this.fileEvents})
       },
 
     }

@@ -53,7 +53,7 @@ export default{
                     let user = {
                         name: data.Name + ' ' + data.SecondName,
                         phone: data.Phone,
-                        email:data.Phone,
+                        email:data.Email,
                         balls:data.balls
 
 

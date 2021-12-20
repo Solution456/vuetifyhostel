@@ -6,7 +6,7 @@
         md="6">
         <h2 class="ma-4">Ближайшие мероприятия</h2>
       </v-col>
-      <v-col
+      <v-col v-if="UserData.Permissions == 'Admin'"
         cols="12"
         md="6"
         class="alignContent">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import EventCard from '../components/Events/EventCard.vue'
 import LoadEventDialog from '../components/Events/LoadEventDialog.vue'
 
@@ -43,6 +44,7 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['UserData']),
     events(){
       return this.$store.getters.getEvents
     },
