@@ -55,6 +55,7 @@
                 <v-text-field
                   solo
                   rounded
+                  type='date'
                   class='centered-input widthDate'
                   hide-details='true'
                   v-model='dateEvents'

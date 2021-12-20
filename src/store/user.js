@@ -1,16 +1,15 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import db from '../main.js'
-import { doc, setDoc} from "firebase/firestore";
-
-
+import { doc, setDoc} from "firebase/firestore"
 
 export default{
     
     state: {
         user: {
             isAuthenticated: false,
-            uid: null
+            uid: null,
+            avatar: null
         }
     },
     mutations: {
@@ -91,7 +90,6 @@ export default{
             }
 
         },
-
         
 
         

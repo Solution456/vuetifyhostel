@@ -49,7 +49,7 @@ export default {
             align: 'start',
             value: 'nameEvents',
           },
-          { text: 'Дата', value: 'dateEvents' },
+          { text: 'Дата', value: 'dateEvents'},
         ],
     }
   },

@@ -1,7 +1,8 @@
 import 'firebase/compat/auth'
 import db from '../main.js'
-import { doc, getDoc, collection, query, where, getDocs} from "firebase/firestore";
-
+import { doc, getDoc, collection, query, where, getDocs, updateDoc} from "firebase/firestore";
+import { getDownloadURL, uploadBytes, ref } from 'firebase/storage'
+import { storage } from '../main.js'
 import Vue from 'vue';
 
 export default{
@@ -16,6 +17,9 @@ export default{
       } ,
       SET_ALL_USERS_DATA(state, payload){
         Vue.set(state, 'UsersData', payload)
+      },
+      SET_USER_AVATAR(state, payload) {
+          Vue.set(state.userData, 'avatar', payload)
       }
     },
 
@@ -72,6 +76,36 @@ export default{
 
             
            
+        },
+        LOAD_AVATAR({commit}, payload) {
+            commit('SET_PROCESSING', true)
+            commit('CLEAR_ERROR')
+            const filename = payload.img.name
+            console.log(payload.id)
+            console.log(filename)
+            console.log(typeof (payload.img))
+            const storRef = ref(storage,`usersAvatar/${filename}`)
+            console.log(storRef)
+            let imgUrl
+            uploadBytes(storRef,payload.img).then(() => {
+                getDownloadURL(storRef).then((url) => {
+                imgUrl = url
+                const docRef = doc(db, 'users', payload.id)
+                updateDoc(docRef, {
+                    avatar: imgUrl
+                }).then(() =>{
+                    commit('SET_USER_AVATAR', imgUrl)
+                    commit('SET_PROCESSING', false)
+                
+                }).catch(error => {
+                    commit('SET_PROCESSING', false)
+                    commit('SET_ERROR', error.message)
+                })
+                })
+            }).catch((error) =>{
+                commit('SET_PROCESSING', false)
+                commit('SET_ERROR', error.message)
+            })
         }
     },
     

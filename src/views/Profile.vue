@@ -12,11 +12,12 @@
           justify='center'
           class='mb-10'
           >                     
-            <v-avatar size='50px' class='mr-3'>
-              <img 
-              alt='Avatar' 
-              src='https://randomuser.me/api/portraits/women/85.jpg'
-              >
+            <v-avatar size='50px' class='mr-3' @click='changeAvatar'>
+              <input type="file" style="display:none" ref="fileInput" accept="image/*" @change="onFilePicked">
+              
+                <v-img :src='UserData.avatar'> </v-img>
+                
+            
             </v-avatar>
             <span class='white--text'>{{ UserData.Name + ' ' + UserData.SecondName }}</span>         
           </v-row>
@@ -142,8 +143,28 @@ export default {
   data() {
     return {
       ballsSSO: 30,
-      ballsAdm: 25
+      ballsAdm: 25,
+      img: null
     }
+  },
+  methods: {
+    changeAvatar() {
+      return(console.log(this.$refs.fileInput.click()))
+    },
+    onFilePicked(event){
+      const files = event.target.files
+      let fileName = files[0].name
+      if(fileName.lastIndexOf('.') <= 0){
+          return alert('Please add valid file!')
+      }
+      const fileReaders = new FileReader()
+      fileReaders.addEventListener('load', () =>{
+          this.imgUrl = fileReaders.result
+      })
+      fileReaders.readAsDataURL(files[0])
+      this.img = files[0]
+      return this.$store.dispatch('LOAD_AVATAR', {img: this.img, id: this.UserData.uid})
+    } 
   },
 
   computed: {
