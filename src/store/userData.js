@@ -48,7 +48,6 @@ export default{
         LOAD_ALL_USERS({commit}, payload){
             commit('SET_PROCESSING', true)
             commit('CLEAR_ERROR')
-            console.log(typeof(payload))
             let UsersData = []
             const q = query(collection(db,'users'), where('Home', '==', String(payload)))
             
@@ -58,8 +57,8 @@ export default{
                     let user = {
                         name: data.Name + ' ' + data.SecondName,
                         phone: data.Phone,
-                        email:data.Phone,
-                        balls:data.Floor
+                        email:data.Email,
+                        balls:data.balls
 
 
                     }
@@ -111,6 +110,7 @@ export default{
     
     getters: {
         UserData: (state) => state.userData,
+        floor: (state) => state.userData.Floor,
         AllUsersData: (state) => state.UsersData
     }
 }

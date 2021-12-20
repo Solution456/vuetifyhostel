@@ -108,7 +108,7 @@ export default{
 
             
         },
-        ADD_EVENT({commit}, payload){
+        ADD_EVENT({commit,dispatch}, payload){
             commit('SET_PROCESSING', true)
             commit('CLEAR_ERROR')
             const filename = payload.img.name
@@ -133,6 +133,7 @@ export default{
                         ...event,
                         id:refDoc.id
                     }).then( () =>{
+                        dispatch('LOAD_EVENTS')
                         commit('SET_PROCESSING',false)
                     })
                     .catch((error) =>{

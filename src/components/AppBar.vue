@@ -97,34 +97,64 @@ export default {
           return this.$store.getters.isUserAuthenticated
         },
         menuItems(){
-            return [
-               {
+            let vm = this
+            console.log(vm.UserData.Permissions)
+            console.log(this.isUserAuthenticated)
+            if(this.isUserAuthenticated & vm.UserData.Permissions == 'Студент'){
+              return [
+                {
                     icon: 'mdi-calendar',
                     title: 'Мероприятия',
                     route: '/events',
                 },
 
                 {
+                    icon: 'mdi-calendar-heart',
+                    title: 'Посещенные мероприятия',
+                    route: '/attendedevents',
+                },
+                {
+                    icon: 'mdi-account-box',
+                    title: 'Profile',
+                    route: '/profile',
+                }
+                ]
+            }
+            else if(this.isUserAuthenticated & vm.UserData.Permissions == 'Староста'){
+              return [
+                {
                     icon: 'mdi-door',
                     title: 'Мой этаж',
                     route: '/floor',
                 },
-
                 {
                     icon: 'mdi-file-tree-outline',
                     title: 'Заявки на баллы',
                     route: '/task',
                 },
-
                 {
-                    icon: '',
-                    title: 'Profile',
-                    route: '/profile',
-                },
- 
+                    icon: 'mdi-calendar',
+                    title: 'Мероприятия',
+                    route: '/events',
+                }]
+            }
+            else if(this.isUserAuthenticated){
+              return [
                 
-
-            ]
+                {
+                    icon: 'mdi-calendar',
+                    title: 'Мероприятия',
+                    route: '/events',
+                },
+         
+                {
+                    icon: 'mdi-home-assistant',
+                    title: 'Этажи',
+                    route: '/adminStage',
+                }]
+            }
+            return 1
+               
         },
         ...mapGetters(['UserData'])
     },

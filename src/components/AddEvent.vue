@@ -103,6 +103,12 @@
 
 <script>
   export default {
+    props:{
+      'floor':{
+        type:String,
+        require:true
+      }
+    },
     data: () => ({
       dialog: false,
       nameEvents: null,
@@ -116,8 +122,10 @@
         this.dialog = false
         console.log(this.fileEvents)
         console.log('yes')
-        return this.$store.dispatch('LOAD_USER_EVENTS', {nameEvents: this.nameEvents, dateEvents: this.dateEvents, fileEvents: this.fileEvents})
+
+        return this.$store.dispatch('LOAD_USER_EVENTS', {nameEvents: this.nameEvents, dateEvents: new Date(this.dateEvents), Floor:this.floor, fileEvents: this.fileEvents})
       },
+
     }
   }
 </script>

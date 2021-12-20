@@ -60,7 +60,7 @@
                     ></v-text-field>
                 </v-col>
                 <v-col cols="12"
-                    md="6">
+                    md="12">
                     <v-btn raised color="success" @click="onPickFile">Загрузить фото</v-btn>
                     <input type="file" style="display:none" ref="fileInput" accept="image/*" @change="onFilePicked">
                     
@@ -72,7 +72,6 @@
                         offset-sm3>
                         <img :src="imgUrl" height="50px">
                     </v-flex>
-                    <p>{{message}}</p>
                     <v-textarea
                         outlined
                         name="inputText"
@@ -128,7 +127,6 @@ export default {
             if(!this.img){
                 return
             }
-            console.log(this.img)
             this.dialog = false
             return this.$store.dispatch('ADD_EVENT',{title:this.title,date:new Date(this.date),location:this.location,
             img:this.img,description:this.message})

@@ -102,31 +102,19 @@
               <v-text-field
               solo
               rounded
-              v-model="ballsSSO"
+              v-model="UserData.balls"
               class='widthRow centered-input'
               readonly
               hide-details='true'
               >
-              {{ ballsSSO }}
+              }
               </v-text-field>
             </v-col>
 
-            <v-col cols='auto' align='center'>
-              <v-text-field 
-              solo
-              rounded
-              v-model="ballsAdm"
-              class='widthRow centered-input'
-              hide-details='true'
-              readonly
-              >            
-              {{ ballsAdm }}
-              </v-text-field>
-            </v-col>
           </v-row>
         </v-layout>
       </v-container>
-      <AddEvent></AddEvent>
+      <AddEvent :floor = 'UserData.Floor'></AddEvent>
     </v-container>
   </div>
 </template>
@@ -142,8 +130,6 @@ export default {
   name: 'Profile',
   data() {
     return {
-      ballsSSO: 30,
-      ballsAdm: 25,
       img: null
     }
   },
