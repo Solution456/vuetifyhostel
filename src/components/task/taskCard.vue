@@ -12,7 +12,6 @@
         <v-list-item-title class="text-h5 mb-1">
           {{task.dateEvents}}
         </v-list-item-title>
-        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
       </v-list-item-content>
 
       <v-list-item-avatar
@@ -20,7 +19,7 @@
         size="80"
         
       ></v-list-item-avatar>
-        <img :src="task.fileEvents">
+        <img :src="task.fileEvents" height="50">
     </v-list-item>
 
     <v-card-actions>

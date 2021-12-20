@@ -23,7 +23,7 @@ export default{
         Vue.set(state, 'taskList',payload)
       },
       ADD_USER_EVENT_STATUS(state, payload){
-        Vue.set(state.listUserEvents.events[payload.eventName],'status',payload.status)
+        Vue.set(state.taskList[0].events[payload.eventName],'status',payload.status)
       }
   },
 
@@ -45,6 +45,7 @@ export default{
             nameEvents: payload.nameEvents,
             dateEvents: payload.dateEvents,
             fileEvents: imgUrl,
+            status:'Обработка',
             id: uuidv4(),
             uuid:getters.UserUid
           }
@@ -52,8 +53,6 @@ export default{
           const docRef = doc(db, 'usersEvents', getters.UserUid)
           setDoc(docRef, {
             events: {
-              uid:getters.UserUid,
-              Floor: payload.Floor,
               [payload.nameEvents]: event
             }
           }, { merge: true }).then(() =>{
@@ -122,18 +121,31 @@ export default{
       commit('CLEAR_ERROR')
       
       const docRef = doc(db,'usersEvents',payload.uid)
-
-      updateDoc(docRef, {
-        [`events.${payload.eventName}.status`]:'Одобренно'
-      }).then(() =>{
-        commit('ADD_USER_EVENT_STATUS',{eventName: payload.eventName, status:'Одобрено'})
-        dispatch('UPDATE_USER_BALLS', {uid:payload.uid, balls:payload.balls})
-        commit('SET_PROCESSING',false)
-        
-      }).catch(error => {
-        console.log(error.message)
-        commit('SET_PROCESSING',false)
-      })
+      if(payload.stat){
+        updateDoc(docRef, {
+          [`events.${payload.eventName}.status`]:'Одобренно'
+        }).then(() =>{
+          commit('ADD_USER_EVENT_STATUS',{eventName: payload.eventName, status:'Одобрено'})
+          dispatch('UPDATE_USER_BALLS', {uid:payload.uid, balls:payload.balls})
+          commit('SET_PROCESSING',false)
+          
+        }).catch(error => {
+          console.log(error.message)
+          commit('SET_PROCESSING',false)
+        })
+      }else{
+        updateDoc(docRef, {
+          [`events.${payload.eventName}.status`]:'Отклонено'
+        }).then(() =>{
+          commit('ADD_USER_EVENT_STATUS',{eventName: payload.eventName, status:'Отклонено'})
+          commit('SET_PROCESSING',false)
+          
+        }).catch(error => {
+          console.log(error.message)
+          commit('SET_PROCESSING',false)
+        })
+      }
+      
     }
   },
 

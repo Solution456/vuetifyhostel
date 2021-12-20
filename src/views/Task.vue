@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-xs>
     <div class="row">
-       <div class="col col-4" v-for="task in getUserTasks()" :key="task.id">
+       <div class="col col-4" v-for="task in getUserTasks" :key="task.id">
           <task-card :task = "task"> </task-card>
         </div>
         
@@ -20,14 +20,8 @@ export default {
         
         getFloor(){
             return this.$store.getters.UserData
-        }
-    },
-    components:{
-        
-        TaskCard
-    },
+        },
 
-    methods:{
         getUserTasks(){
             let vm = this
             let listTask = vm.tasksList
@@ -36,15 +30,16 @@ export default {
                 let task = listTask[i]
                 let el = Object.values(task['events'])
                 for(let j = 0; j < el.length; j++){
-                    tasks.push(el[j])
+                    if(el[j].status == 'Обработка'){
+                        tasks.push(el[j])
+                    }
+                    
                 }
                 
             }
-            // let task = listTask[0]
-            // console.log(Object.values(task['events']))
-            
             return tasks
         },
+
         getTasks(){
             let that = this
             let b = that.getFloor
@@ -52,11 +47,38 @@ export default {
             console.log(floor)
             return that.$store.dispatch('LOAD_FLOOR_USER_EVENTS', floor)
         }
+        
+    },
+    components:{
+        
+        TaskCard
+    },
+
+    methods:{
+        // getUserTasks(){
+        //     let vm = this
+        //     let listTask = vm.tasksList
+        //     let tasks = []
+        //     for (let i=0; i < listTask.length; i++){
+        //         let task = listTask[i]
+        //         let el = Object.values(task['events'])
+        //         for(let j = 0; j < el.length; j++){
+        //             tasks.push(el[j])
+        //         }
+                
+        //     }
+        //     // let task = listTask[0]
+        //     // console.log(Object.values(task['events']))
+            
+        //     return tasks
+        // },
+        
+        
     },
 
     created(){
-        this.getTasks(),
-        this.getUserTasks()
+        this.getTasks
+        // this.getUserTasks()
 
     }
 }

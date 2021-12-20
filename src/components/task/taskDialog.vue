@@ -125,12 +125,13 @@ export default {
     methods:{
         SubmitTask(){
             this.dialog = false
-            return this.$store.dispatch('UPDATE_STATUS', {uid: this.task.uuid, eventName:this.task.nameEvents,balls:this.balls})
+            return this.$store.dispatch('UPDATE_STATUS', {uid: this.task.uuid, eventName:this.task.nameEvents,balls:this.balls, stat: true})
         },
         
         CanceledTask(){
             this.dialog = false
-            return 
+            return this.$store.dispatch('UPDATE_STATUS', {uid: this.task.uuid, eventName:this.task.nameEvents,stat: false})
+ 
         }
     }
 
